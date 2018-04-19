@@ -1,5 +1,5 @@
 <div class="container-fluid sidebar">
-    <h4 class="sidebar-title">ANGLearn Panel</h4>
+    <a href="/admin"><h4 class="sidebar-title">ANGLearn Panel</h4></a>
     <hr class="line">
     <nav class="nav flex-column">
         <li class="nav-item dropdown">
@@ -34,8 +34,8 @@
                 Uzytkownicy
             </a>
             <div class="dropdown-menu" aria-labelledby="users">
-                <a class="dropdown-item" href="#">Dodaj</a>
-                <a class="dropdown-item" href="#">Edytuj</a>
+                <a class="dropdown-item" href="/admin/users/create">Dodaj</a>
+                <a class="dropdown-item" href="/admin/users">Edytuj</a>
             </div>
         </li>
         <a class="nav-link" href="#">Statystyki</a>
