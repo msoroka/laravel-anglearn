@@ -1,0 +1,31 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container-fluid.sidebar{
+    height: 100vh;
+    background: #5a6268;
+    margin-top: -25px;
+    padding: 15px;
+    color: white;
+}
+
+.line {
+    width: 100%;
+    border-color: white;
+}
+
+.sidebar-title{
+    text-align: center;
+    font-weight: 700;
+}
+
+.nav-link.dropdown-toggle{
+    color: white;
+    font-weight: 600;
+}
+
+.nav-link{
+    color: white;
+    font-weight: 600;
+}

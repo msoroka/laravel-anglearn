@@ -10,11 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/admin', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index')->name('admin');
+Route::get('/', 'PagesController@index');
