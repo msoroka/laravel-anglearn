@@ -94,7 +94,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('admin.users.edit', compact('user'));
+
     }
 
     /**
@@ -106,7 +109,41 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+//        $this->validate($request, array(
+//            'name' => 'required|max:255',
+//            'email' => 'required|unique:users|max:255',
+//            'password' => 'required|max:255',
+//        ));
+//
+//        //store in the database
+        $user = User::findOrFail($id);
+
+        $role = 4;
+
+        if($request->role == 'Administrator')
+        {
+            $role = 1;
+        } else if($request->role == 'Redaktor')
+        {
+            $role = 2;
+        } else if($request->role == 'Super Redaktor')
+        {
+            $role = 3;
+        } else {
+            $role = 4;
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role_id = $role;
+
+        $user->save();
+//
+        return redirect('admin/users');
+
     }
 
     /**

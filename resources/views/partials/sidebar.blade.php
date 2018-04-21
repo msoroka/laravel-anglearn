@@ -35,7 +35,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="users">
                 <a class="dropdown-item" href="/admin/users/create">Dodaj</a>
-                <a class="dropdown-item" href="/admin/users">Edytuj</a>
+                <a class="dropdown-item" href="/admin/users">Wszyscy</a>
             </div>
         </li>
         <a class="nav-link" href="#">Statystyki</a>
