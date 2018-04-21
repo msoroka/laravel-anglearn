@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
@@ -14,16 +14,12 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $users = User::all();
+        $roles = Role::all();
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users', 'roles'));
     }
 
     /**
@@ -44,19 +40,39 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //validate the data
+                //validate the data
         $this->validate($request, array(
             'name' => 'required|max:255',
-            'email' => 'required|max:255',
-            'password' => 'required',
+            'email' => 'required|unique:users|max:255',
+            'password' => 'required|max:255',
         ));
-        //store in the database
-        $post = new User();
-        $post->name = $request->name;
-        $post->email = $request->email;
-        $post->password =  Hash::make($request->password);
-        $post->save();
-        return redirect('admin/users/');
+
+                //store in the database
+        $user = new User();
+
+        $role = 4;
+
+        if($request->role == 'Administrator')
+        {
+            $role = 1;
+        } else if($request->role == 'Redaktor')
+        {
+            $role = 2;
+        } else if($request->role == 'Super Redaktor')
+        {
+            $role = 3;
+        } else {
+            $role = 4;
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role_id = $role;
+
+        $user->save();
+
+        return redirect('admin/users');
     }
 
     /**
@@ -99,9 +115,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function destroy(User $user)
     {
-        User::destroy($id);
-        return redirect('admin/users/');
+        $user->delete();
+        return redirect('admin/users');
     }
 }

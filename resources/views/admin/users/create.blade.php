@@ -16,12 +16,19 @@
                     <div class="row">
                         <div class="col-md-6">
                             {!! Form::open(['route' => 'users.store']) !!}
-                            {{ Form::label('name', 'Imie:') }}
-                            {{ Form::text('name', null, array('class' => 'form-control')) }}
-                            {{ Form::label('email', 'E-Mail:') }}
-                            {{ Form::text('email', null, array('class' => 'form-control')) }}
-                            {{ Form::label('password', 'Haslo:') }}
-                            {{ Form::password('password', null, array('class' => 'form-control')) }}
+                            {{ Form::label('name', 'Imie:')}}
+                            {{ Form::text('name', null, array('class' => 'form-control'))}}
+                            {{ Form::label('email', 'E-Mail:')}}
+                            {{ Form::email('email', null, array('class' => 'form-control'))}}
+                            {{ Form::label('password', 'Haslo:')}}
+                            {{ Form::password('password', null, array('class' => 'form-control'))}}
+                            {{ Form::label('role', 'Rola:') }}
+                            {{ Form::select('role',[
+                                'Administrator' => 'Administrator',
+                                'Redaktor' => 'Redaktor',
+                                'Super Redaktor' => 'Super Redaktor',
+                                'Uzytkownik' => 'Uzytkownik'
+                            ]), array('class' => 'form-control') }}
                             {{ Form::submit('Dodaj', array('class' => 'btn-success btn-lg', 'style' => 'margin-top:25px;')) }}
                             {!! Form::close() !!}
                         </div>
