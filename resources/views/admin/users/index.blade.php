@@ -25,7 +25,7 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user -> name }}</td>
                         <td>{{ $user -> email }}</td>
-                        <td><a href="#"><button type="button" class="btn btn-success">Edytuj</button></a>  <a href="#"><button type="button" class="btn btn-danger">Usun</button></a></td>
+                        <td><a href="#"><button type="button" class="btn btn-success">Edytuj</button></a>  <a href="{{ route('users.destroy', $user->id) }}"><button type="button" class="btn btn-danger">Usun</button></a></td>
                     </tr>
                         @endforeach
                     </tbody>

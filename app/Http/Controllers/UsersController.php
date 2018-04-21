@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
@@ -12,6 +14,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $users = User::all();
@@ -37,7 +44,19 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate the data
+        $this->validate($request, array(
+            'name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'password' => 'required',
+        ));
+        //store in the database
+        $post = new User();
+        $post->name = $request->name;
+        $post->email = $request->email;
+        $post->password =  Hash::make($request->password);
+        $post->save();
+        return redirect('admin/users/');
     }
 
     /**
@@ -82,6 +101,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect('admin/users/');
     }
 }
