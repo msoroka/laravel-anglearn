@@ -1,0 +1,32 @@
+.sidebar{
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 4px 2px 4px rgba(0,0,0,.04);
+    margin-top: -25px;
+}
+
+.sidebar a{
+    color: black;
+}
+
+.sidebar ul li {
+    margin: 5px 0;
+}
+
+.panelname{
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.btn.btn-secondary{
+    color: black;
+    background: #fff;
+    font-size: 20px;
+    width: 100%;
+}
+
+.form-control[type='email'],
+.form-control[type='password'],
+input[type='password']{
+    width: 100%;
+}

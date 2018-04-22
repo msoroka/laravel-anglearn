@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Role;
-use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -17,9 +17,8 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        $roles = Role::all();
 
-        return view('admin.users.index', compact('users', 'roles'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -29,7 +28,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -40,38 +41,19 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-                //validate the data
         $this->validate($request, array(
             'name' => 'required|max:255',
             'email' => 'required|unique:users|max:255',
             'password' => 'required|max:255',
         ));
-
-                //store in the database
+        //store in the database
         $user = new User();
-
-        $role = 4;
-
-        if($request->role == 'Administrator')
-        {
-            $role = 1;
-        } else if($request->role == 'Redaktor')
-        {
-            $role = 2;
-        } else if($request->role == 'Super Redaktor')
-        {
-            $role = 3;
-        } else {
-            $role = 4;
-        }
 
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->role_id = $role;
-
+        $user->role_id = $request->role;
         $user->save();
-
         return redirect('admin/users');
     }
 
@@ -95,9 +77,9 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $roles = Role::all();
 
-        return view('admin.users.edit', compact('user'));
-
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -109,41 +91,19 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
-//        $this->validate($request, array(
-//            'name' => 'required|max:255',
-//            'email' => 'required|unique:users|max:255',
-//            'password' => 'required|max:255',
-//        ));
-//
-//        //store in the database
+        $this->validate($request, array(
+            'name' => 'required|max:255',
+            'password' => 'required|max:255',
+        ));
+        //store in the database
         $user = User::findOrFail($id);
 
-        $role = 4;
-
-        if($request->role == 'Administrator')
-        {
-            $role = 1;
-        } else if($request->role == 'Redaktor')
-        {
-            $role = 2;
-        } else if($request->role == 'Super Redaktor')
-        {
-            $role = 3;
-        } else {
-            $role = 4;
-        }
-
         $user->name = $request->name;
-        $user->email = $request->email;
+        $user->email =  $user->email ;
         $user->password = Hash::make($request->password);
-        $user->role_id = $role;
-
+        $user->role_id = $request->role;
         $user->save();
-//
         return redirect('admin/users');
-
     }
 
     /**
@@ -152,7 +112,6 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function destroy(User $user)
     {
         $user->delete();

@@ -1,15 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-md-2">
-                @include('partials.sidebar')
-            </div>
-            <div class="col-md-1"></div>
-
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -26,10 +20,10 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user -> name }}</td>
                             <td>{{ $user -> email }}</td>
-                            <td>{{ DB::table('roles')->where('id', $user->role_id )->value('name') }}</td>
+                            <td>{{ $user -> role -> name }}</td>
                             <td>
                                 @csrf
-                                @if(Auth::user()->role_id == 1 || ($user->role_id ==Auth::user()->role_id && $user->id==Auth::user()->id))
+                                @if(Auth::user()->role_id == 1)
                                     {{--<a href="#"><button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>--}}
                                     <div style="float:left;">
                                         {!! Form::open(array('route'=>['users.edit',$user->id], 'method'=>'GET')) !!}
@@ -51,7 +45,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-1"></div>
         </div>
     </div>
 @endsection

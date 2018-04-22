@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,8 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-
-        return view('admin.index', compact('users'));
+        return view('admin.index');
     }
 }

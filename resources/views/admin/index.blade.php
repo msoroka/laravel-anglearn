@@ -1,30 +1,24 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
+    <div class="container">
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2">
-                @include('partials.sidebar')
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
             </div>
-            <div class="col-md-1"></div>
-
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Komunikat</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        Witaj w Panelu Administracyjnym!
-                    </div>
+        @endif
+        <div class="row">
+            <div class="col-md-6">
+                <div class="jumbotron">
+                    <h1 class="display-3">Komunikat</h1>
+                    <hr class="my-4">
+                    <p class="lead">Witaj {{ Auth::user()->name }}</p>
+                    <p class="lead">Twoja rola: {{ Auth::user()->role->name }}</p>
                 </div>
             </div>
-            <div class="col-md-1"></div>
         </div>
-    </div>
+
+
+
 @endsection
