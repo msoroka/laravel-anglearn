@@ -11,42 +11,19 @@
 
             <div class="col-md-8">
                 <div class="jumbotron">
-                    <h1 class="display-4">Edytuj uzytkownika</h1>
+                    <h1 class="display-4">Edytuj kategorie</h1>
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            {{--{!! Form::open(['method'=>'PATCH', 'route' => 'users.update', $user->id]) !!}--}}
-
                             @csrf
-                            {!! Form::model($user, [
+                            {!! Form::model($category, [
                             'method' => 'PATCH',
-                            'route' => ['users.update', $user->id]
+                            'route' => ['category.update', $category->id]
                             ]) !!}
-                            {{ Form::label('name', 'Imie:')}}
-                            {{ Form::text('name', $user-> name, array('class' => 'form-control'))}}
-                            @if(Auth::user()->role_id == 1)
-                            {{ Form::label('email', 'E-Mail:')}}
-                            {{ Form::email('email', $user-> email, array('class' => 'form-control'))}}
-                            @else
-                                <br>
-                                <p>E-Mail: <strong>{{$user-> email}}</strong></p>
-                            @endif
-                            {{ Form::label('password', 'Nowe haslo:')}}
-                            <br>
-                            {{--<div style="margin-top:-25px;"></div>--}}
-                            {{ Form::password('password', null, array('class' => 'form-control'))}}
-                            <br>
-                            @if(Auth::user()->role_id == 1)
-                            {{ Form::label('role', 'Rola:') }}
-                            <br>
-                            <div style="margin-top:-25px;"></div>
-                            {{ Form::select('role',[
-                                'Administrator' => 'Administrator',
-                                'Redaktor' => 'Redaktor',
-                                'Super Redaktor' => 'Super Redaktor',
-                                'Uzytkownik' => 'Uzytkownik'
-                            ], 'Uzytkownik'), array('class' => 'form-control') }}
-                            @endif
+                            {{ Form::label('name', 'Nazwa:')}}
+                            {{ Form::text('name', $category->name, array('class' => 'form-control'))}}
+                            {{ Form::label('description', 'Opis:')}}
+                            {{ Form::textarea('description', $category->description, array('class' => 'form-control'))}}
                             {{ Form::submit('Edytuj', array('class' => 'btn-success btn-lg', 'style' => 'margin-top:25px;')) }}
                             {!! Form::close() !!}
                         </div>
