@@ -18,3 +18,4 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 Route::resource('/admin/users', 'UsersController');
 Route::resource('/admin/categories', 'CategoryController');
 Route::resource('/admin/subcategories', 'SubcategoryController');
+Route::resource('/admin/words', 'WordController');
