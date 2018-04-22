@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@if(Auth::user()->role_id == 4)
+    <script>window.location = "/";</script>
+@endif
+
 @section('content')
     <div class="container">
 
@@ -18,7 +22,6 @@
                 </div>
             </div>
         </div>
-
-
-
+    </div>
 @endsection
+

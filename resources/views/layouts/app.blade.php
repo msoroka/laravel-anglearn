@@ -45,7 +45,7 @@
                     <!-- Authentication Links -->
                     @guest
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Rejestracja') }}</a></li>
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -54,13 +54,18 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/admin">
-                                    Panel
-                                </a>
+                                @if(Auth::user()->role_id != 4)
+                                    <a class="dropdown-item" href="/admin">
+                                        Panel Administracyjny
+                                    </a>
+                                @endif
+                                    <a class="dropdown-item" href="/panel">
+                                        Panel Uzytkownika
+                                    </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Wyloguj') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
