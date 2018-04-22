@@ -14,5 +14,9 @@ Auth::routes();
 
 Route::get('/admin', 'HomeController@index')->name('admin');
 Route::resource('/admin/users', 'UsersController');
+Route::resource('/admin/word', 'WordController');
+Route::resource('/admin/package', 'PackageController');
+Route::resource('/admin/category', 'CategoryController');
+Route::resource('/admin/subcategory', 'SubcategoryController');
 Route::resource('/', 'PagesController');
 

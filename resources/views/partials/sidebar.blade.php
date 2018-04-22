@@ -3,12 +3,21 @@
     <hr class="line">
     <nav class="nav flex-column">
         <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="packages" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Zestawy
+        </a>
+        <div class="dropdown-menu" aria-labelledby="packages">
+            <a class="dropdown-item" href="/admin/package/create">Dodaj</a>
+            <a class="dropdown-item" href="/admin/package">Edytuj</a>
+        </div>
+        </li>
+        <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="words" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Slowka
             </a>
             <div class="dropdown-menu" aria-labelledby="words">
-                <a class="dropdown-item" href="#">Dodaj</a>
-                <a class="dropdown-item" href="#">Edytuj</a>
+                <a class="dropdown-item" href="/admin/word/create">Dodaj</a>
+                <a class="dropdown-item" href="/admin/word">Edytuj</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -16,8 +25,8 @@
                 Kategorie
             </a>
             <div class="dropdown-menu" aria-labelledby="categories">
-                <a class="dropdown-item" href="#">Dodaj</a>
-                <a class="dropdown-item" href="#">Edytuj</a>
+                <a class="dropdown-item" href="/admin/category/create">Dodaj</a>
+                <a class="dropdown-item" href="/admin/category">Edytuj</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -25,8 +34,8 @@
                 Podkategorie
             </a>
             <div class="dropdown-menu" aria-labelledby="subcategory">
-                <a class="dropdown-item" href="#">Dodaj</a>
-                <a class="dropdown-item" href="#">Edytuj</a>
+                <a class="dropdown-item" href="/admin/subcategory/create">Dodaj</a>
+                <a class="dropdown-item" href="/admin/subcategory">Edytuj</a>
             </div>
         </li>
         <li class="nav-item dropdown">
