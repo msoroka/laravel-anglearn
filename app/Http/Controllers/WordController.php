@@ -20,10 +20,7 @@ class WordController extends Controller
     {
 //      $words = DB::table('words')->paginate(10);
 //        $words = DB::table('words')->simplePaginate(10);
-
-
-
-        $words = Word::all();
+        $words = Word::paginate(10);
 
         return view('admin.words.index', compact('words'));
     }

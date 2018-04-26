@@ -10,4 +10,9 @@ class Word extends Model
     {
         return $this->belongsTo('App\Subcategory');
     }
+
+    public function package()
+    {
+        return $this->belongsToMany('App\Package');
+    }
 }

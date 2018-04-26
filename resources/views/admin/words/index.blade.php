@@ -47,8 +47,8 @@
                         </tr>
                     @endforeach
                     </tbody>
-                    {{--{{ $words->links() }}--}}
                 </table>
+                {{ $words->links() }}
             </div>
         </div>
     </div>

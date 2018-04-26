@@ -16,4 +16,8 @@ class Subcategory extends Model
     public function word(){
         return $this->hasMany('App\Word');
     }
+
+    public function package(){
+        return $this->hasMany('App\Package');
+    }
 }
