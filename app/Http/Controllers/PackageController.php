@@ -3,6 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use App\Subcategory;
+use App\Package;
+use App\User;
+use App\Word;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 
 class PackageController extends Controller
 {
@@ -13,7 +22,12 @@ class PackageController extends Controller
      */
     public function index()
     {
-        //
+        $packages = Package::all();
+        $subcategories = Subcategory::all();
+        $users = User::all();
+        $words = Word::all();
+
+        return view('admin.packages.index', compact('users','subcategories', 'words', 'packages'));
     }
 
     /**
@@ -23,7 +37,11 @@ class PackageController extends Controller
      */
     public function create()
     {
-        //
+        $subcategories = Subcategory::all();
+        $words = Word::all();
+        $users = User::all();
+
+        return view('admin.packages.create', compact('subcategories', 'words', 'users'));
     }
 
     /**
@@ -34,7 +52,20 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'name' => 'required|max:255',
+        ));
+        //store in the database
+        $package = new Package();
+
+        $package->name = $request->name;
+        $package->subcategory_id = $request->subcategory;
+        $package->user_id = $request->user;
+        $package->save();
+
+        $package->word()->sync($request->words, false);
+
+        return redirect('admin/packages');
     }
 
     /**
@@ -56,7 +87,12 @@ class PackageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $package = Package::find($id);
+        $subcategories = Subcategory::all();
+        $words = Word::all();
+        $users = User::all();
+
+        return view('admin.packages.edit', compact('subcategories', 'words', 'users', 'package'));
     }
 
     /**
@@ -68,7 +104,20 @@ class PackageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, array(
+            'name' => 'required|max:255',
+        ));
+        //store in the database
+        $package = Package::findOrFail($id);
+
+        $package->name = $request->name;
+        $package->subcategory_id = $request->subcategory;
+        $package->user_id = $request->user;
+        $package->save();
+
+        $package->word()->sync($request->words, false);
+
+        return redirect('admin/packages');
     }
 
     /**
@@ -77,8 +126,16 @@ class PackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Package $package)
     {
-        //
+        $package->delete();
+        return redirect('admin/packages');
+    }
+
+    public function words($id)
+    {
+        $package = Package::findOrFail($id);
+
+        return view('admin.packages.words', compact('package'));
     }
 }

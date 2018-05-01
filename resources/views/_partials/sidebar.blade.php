@@ -52,8 +52,8 @@
                         Zestawy
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Dodaj</a>
-                        <a class="dropdown-item" href="#">Pokaz wszystkich</a>
+                        <a class="dropdown-item" href="/admin/packages/create">Dodaj</a>
+                        <a class="dropdown-item" href="/admin/packages/">Pokaz wszystkie</a>
                     </div>
                 </div>
             </li>

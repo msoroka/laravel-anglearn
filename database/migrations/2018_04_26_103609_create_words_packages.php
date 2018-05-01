@@ -13,13 +13,13 @@ class CreateWordsPackages extends Migration
      */
     public function up()
     {
-        Schema::create('words_packages', function (Blueprint $table) {
+        Schema::create('package_word', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('word_id')->unsigned();
-            $table->foreign('word_id')->references('id')->on('subcategories');
+            $table->foreign('word_id')->references('id')->on('words');
 
-            $table->integer('subcategory_id')->unsigned();
-            $table->foreign('subcategory_id')->references('id')->on('words');
+            $table->integer('package_id')->unsigned();
+            $table->foreign('package_id')->references('id')->on('packages');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateWordsPackages extends Migration
      */
     public function down()
     {
-        Schema::drop('words_packages');
+        Schema::drop('package_word');
     }
 }

@@ -7,7 +7,9 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
+                        @if(Auth::user()->role_id == 1)
                         <th scope="col">id</th>
+                        @endif
                         <th scope="col">Imie</th>
                         <th scope="col">E-Mail</th>
                         <th scope="col">Rola</th>
@@ -19,7 +21,9 @@
                     <tbody>
                     @foreach($users as $user)
                         <tr>
+                            @if(Auth::user()->role_id == 1)
                             <td>{{ $user->id }}</td>
+                            @endif
                             <td>{{ $user -> name }}</td>
                             <td>{{ $user -> email }}</td>
                             <td>{{ $user -> role -> name }}</td>

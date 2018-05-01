@@ -7,7 +7,9 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">id</th>
+                        @if(Auth::user()->role_id == 1)
+                            <th scope="col">id</th>
+                        @endif
                         <th scope="col">nazwa</th>
                         <th scope="col">opis</th>
                         @if(Auth::user()->role_id == 1)
@@ -18,7 +20,9 @@
                     <tbody>
                     @foreach($categories as $category)
                         <tr>
-                            <td>{{ $category->id }}</td>
+                            @if(Auth::user()->role_id == 1)
+                                <td>{{ $category->id }}</td>
+                            @endif
                             <td>{{ $category -> name }}</td>
                             <td>{{ $category -> description }}</td>
                             <td>

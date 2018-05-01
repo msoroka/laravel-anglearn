@@ -5,6 +5,8 @@
         <div class="row">
             <div class="col-md-10">
                 <div class="jumbotron">
+                    <a href="{{ url()->previous() }}"><button type="button" class="btn btn-primary"> <- Powrot</button></a>
+                    <br><br>
                     <h2 class="display-4">Edytuj slowko</h2>
                     <hr>
                     <div class="row">

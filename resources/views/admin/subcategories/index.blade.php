@@ -7,7 +7,9 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
+                        @if(Auth::user()->role_id == 1)
                         <th scope="col">id</th>
+                        @endif
                         <th scope="col">nazwa</th>
                         <th scope="col">opis</th>
                         <th scope="col">kategoria</th>
@@ -19,7 +21,9 @@
                     <tbody>
                     @foreach($subcategories as $subcategory)
                         <tr>
+                            @if(Auth::user()->role_id == 1)
                             <td>{{ $subcategory->id }}</td>
+                            @endif
                             <td>{{ $subcategory -> name }}</td>
                             <td>{{ $subcategory -> description }}</td>
                             <td>{{ $subcategory -> category -> name }}</td>

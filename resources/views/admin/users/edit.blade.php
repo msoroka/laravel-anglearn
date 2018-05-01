@@ -4,6 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10">
+                <a href="{{ url()->previous() }}"><button type="button" class="btn btn-primary"> <- Powrot</button></a>
+                <br><br>
                 <div class="jumbotron">
                     <h2 class="display-4">Edytuj uzytkownika</h2>
                     <hr>
