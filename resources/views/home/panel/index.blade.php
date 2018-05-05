@@ -7,11 +7,9 @@
                 <div class="jumbotron">
                     <h1 class="display-3">Komunikat</h1>
                     <hr class="my-4">
-                    @foreach($packages as $package)
-                       {{ $package->name }}<a href="test/{{$package->id}}">Test </a><a href="learn/{{$package->id}}">Ucz sie</a>
-                        <br>
-                    @endforeach
+                    <p class="lead">TEST</p>
                 </div>
             </div>
         </div>
+    </div>
 @endsection
