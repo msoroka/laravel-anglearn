@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Result;
 
 class PanelController extends Controller
 {
@@ -13,7 +15,9 @@ class PanelController extends Controller
      */
     public function index()
     {
-        return view('home.panel.index');
+        $results = Result::all();
+
+        return view('home.panel.index',compact('results'));
     }
 
     /**

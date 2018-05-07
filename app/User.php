@@ -37,7 +37,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Package');
     }
 
-    public function result()
+    public function results()
     {
         return $this->hasMany('App\Result');
     }

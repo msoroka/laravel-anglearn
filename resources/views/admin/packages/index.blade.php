@@ -30,7 +30,7 @@
                             <td>{{ $package -> user -> name }}</td>
                             <td>
                                 @csrf
-                                @if(Auth::user()->role_id == 1)
+                                @if(Auth::user()->role_id == 1 || Auth::user()->id == $package -> user_id)
                                     <div style="float:left;">
                                         {!! Form::open(array('route'=>['packages.edit',$package->id], 'method'=>'GET')) !!}
                                         {!! Form::button('<i class="fas fa-edit"></i>',['class'=>'btn btn-success','type'=>'submit', 'style'=>'margin-right:-75px;']) !!}

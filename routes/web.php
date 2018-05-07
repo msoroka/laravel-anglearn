@@ -23,4 +23,6 @@ Route::resource('/admin/words', 'WordController');
 Route::resource('/admin/packages', 'PackageController');
 Route::get('/test/{id}', 'TestController@test')->name('test');
 Route::get('/learn/{id}', 'LearnController@learn')->name('learn');
+Route::get('/package/{id}', 'PackageHomeController@package')->name('package');
 Route::resource('/panel', 'PanelController');
+Route::resource('/result', 'ResultController');

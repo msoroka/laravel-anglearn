@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Package;
+use Illuminate\Http\Request;
 
-class LearnController extends Controller
+class PackageHomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +14,14 @@ class LearnController extends Controller
      */
     public function index()
     {
-        return view('home.learn.index');
+        //
     }
 
-    public function learn($id)
+    public function package($id)
     {
         $package = Package::find($id);
 
-        return view('home.learn.index', compact('package'));
+        return view('home.package.index', compact('package'));
     }
 
     /**
